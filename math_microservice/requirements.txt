@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+click
+pydantic
+flake8
+pytest
+sqlalchemy
+prometheus_fastapi_instrumentator
+

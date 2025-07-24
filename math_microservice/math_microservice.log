@@ -1,0 +1,6 @@
+{"timestamp": "2025-07-24T03:58:50.910954", "operation": "pow", "input": {"base": 2.0, "exponent": 8.0}, "result": {"result": 256.0}}
+{"timestamp": "2025-07-24T03:58:50.922278", "operation": "fibonacci", "input": {"n": 10}, "result": {"result": 55}}
+{"timestamp": "2025-07-24T03:58:50.949126", "operation": "factorial", "input": {"n": 5}, "result": {"result": 120}}
+{"timestamp": "2025-07-24T03:58:50.962923", "operation": "gcd", "input": {"a": 54, "b": 24}, "result": {"result": 6}}
+{"timestamp": "2025-07-24T03:58:50.975122", "operation": "is_prime", "input": {"n": 17}, "result": {"result": true}}
+{"timestamp": "2025-07-24T03:58:50.986934", "operation": "is_prime", "input": {"n": 18}, "result": {"result": false}}
