@@ -1,56 +1,82 @@
 # Math Microservice
 
-Un microserviciu Python pentru operații matematice (pow, fibonacci, factorial), cu API REST și CLI, persistare SQLite, validare Pydantic, caching in-memory, monitoring Prometheus, authorization și logging.
+A Python microservice for math operations (power, Fibonacci, factorial, GCD, prime check) with REST API, CLI, async workers, advanced logging, authentication, and flexible persistence.
 
-## Structură proiect
+## Features
 
-- `app/` - codul sursă principal
-- `tests/` - teste unitare
-- `requirements.txt` - dependențe
-- `.flake8` - configurare linting
-- `Dockerfile` - rulare containerizată
+- **Math API:** Endpoints for pow, fibonacci, factorial, gcd, is_prime
+- **Async workers:** Fast, non-blocking calculations
+- **Caching:** In-memory cache for repeated requests
+- **Logging:** Streaming log system with queue and file output
+- **Authentication:** User registration, login, and role-based access (admin/user)
+- **Persistence:** Choose SQLite, in-memory, or file-based storage
+- **Monitoring:** Prometheus metrics at `/metrics`
+- **CLI:** Command line interface for all operations
+- **UI:** Simple web interface for API, registration, and history
+- **Docker:** Containerized for easy deployment
 
-## Instalare
+## How to Run
+
+### 1. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Utilizare
+### 2. Start the API server
 
-### API
 ```bash
 uvicorn math_microservice.app.api:app --reload
 ```
 
-### CLI
+### 3. Use the CLI
+
 ```bash
 python -m math_microservice.app.cli pow --base 2 --exponent 8
 python -m math_microservice.app.cli fibonacci --n 10
 python -m math_microservice.app.cli factorial --n 5
 ```
 
-### Authorization
-Toate endpoint-urile REST necesită un token Bearer (default: `secret-token`).
-Adaugă header-ul:
-```
-Authorization: Bearer secret-token
-```
-Poți schimba tokenul cu variabila de mediu `API_TOKEN`.
+### 4. Register and login (API)
 
-### Monitoring
-Endpoint Prometheus la `/metrics` (ex: http://localhost:8000/metrics)
+- Register: `POST /register` with `{"username": "yourname", "password": "yourpass"}`
+- Login: `POST /login` with `{"username": "yourname", "password": "yourpass"}`
+- Use token `username:password` as Bearer for all requests
 
-### Logging
-Toate operațiile sunt logate în fișierul `math_microservice.log` (simulare streaming/log centralizat).
+### 5. Change persistence mode
 
-### Docker
+Set environment variable `PERSISTENCE_MODE` to `sqlite`, `memory`, or `file` before running.
+
+### 6. Run with Docker
+
 ```bash
 docker build -t math-microservice .
-docker run -e API_TOKEN=secret-token -p 8000:8000 math-microservice
+docker run -e PERSISTENCE_MODE=sqlite -p 8000:8000 math-microservice
 ```
 
-## Testare
+### 7. Access the UI
+
+Open [http://localhost:8000/ui](http://localhost:8000/ui) in your browser.
+
+### 8. Monitoring
+
+Visit [http://localhost:8000/metrics](http://localhost:8000/metrics) for Prometheus metrics.
+
+### 9. Run tests
+
 ```bash
 pytest
 ```
+
+## Directory Overview
+
+- `app/` - Main code for API, CLI, logic, models, database, and utilities
+- `tests/` - Unit tests for all features
+- `requirements.txt` - List of needed Python packages
+- `Dockerfile` - Instructions to build and run the project in a container
+- `math_microservice.db` - SQLite database file (if using sqlite mode)
+- `math_microservice.log` - Log file for all operations
+
+---
+
+This project is easy to use, extend, and run for anyone who needs math operations as a service.

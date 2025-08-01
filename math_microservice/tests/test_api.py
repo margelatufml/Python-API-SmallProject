@@ -2,7 +2,9 @@ import pytest
 from fastapi.testclient import TestClient
 from app.api import app
 
-TOKEN = "secret-token"
+
+# Use valid token for new authentication system
+TOKEN = "admin:admin"
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 
 client = TestClient(app)

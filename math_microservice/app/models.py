@@ -1,3 +1,4 @@
+
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
@@ -40,3 +41,23 @@ class IsPrimeRequest(BaseModel):
 
 class IsPrimeResponse(BaseModel):
     result: bool
+
+# Advanced authentication/authorization models
+class UserCreate(BaseModel):
+    username: str
+    password: str
+    role: str = "user"
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+class User(BaseModel):
+    id: Optional[int]
+    username: str
+    password_hash: str
+    role: str
+
+class Role(BaseModel):
+    name: str
+    description: Optional[str]
